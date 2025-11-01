@@ -33,20 +33,17 @@ function This_MOD.start()
     --- Obtener los elementos
     This_MOD.get_elements()
 
-    -- --- Modificar los elementos
-    -- for _, Spaces in pairs(This_MOD.to_be_processed) do
-    --     for _, Space in pairs(Spaces) do
-    --         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    --- Modificar los elementos
+    for _, Spaces in pairs(This_MOD.to_be_processed) do
+        for _, Space in pairs(Spaces) do
+            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 
-    --         -- --- Crear los elementos
-    --         -- This_MOD.create_item(Space)
-    --         -- This_MOD.create_entity(Space)
-    --         -- This_MOD.create_recipe(Space)
-    --         -- This_MOD.create_tech(Space)
+            --- Actualizar las entidades
+            This_MOD.update_entity(Space)
 
-    --         --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
-    --     end
-    -- end
+            --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+        end
+    end
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
@@ -227,6 +224,62 @@ function This_MOD.get_elements()
     for item_name, entity in pairs(GMOD.entities) do
         validate_entity(GMOD.items[item_name], entity)
     end
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+end
+
+---------------------------------------------------------------------------
+
+function This_MOD.update_entity(space)
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    --- Actualizar el consumo en las entidades en general
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+    for _, property in pairs(This_MOD.properties) do
+        repeat
+            if not space.entity[property] then break end
+
+            local Value, Unit = GMOD.number_unit(space.entity[property])
+            if Value == This_MOD.new_value then break end
+
+            space.entity[property] = This_MOD.new_value .. Unit
+        until true
+    end
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+
+
+
+
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+    --- Arma de energía
+    --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+
+    local Weapon
+    repeat
+        if not space.entity.attack_parameters then break end
+
+        Weapon = space.entity.attack_parameters
+        if not Weapon.ammo_type then
+            Weapon = nil
+            break
+        end
+
+        Weapon = Weapon.ammo_type
+        if not Weapon.energy_consumption then
+            Weapon = nil
+            break
+        end
+
+        local Value, Unit = GMOD.number_unit(Weapon.energy_consumption)
+        if Value == This_MOD.new_value then
+            Weapon = nil
+            break
+        end
+
+        Weapon.energy_consumption = This_MOD.new_value .. Unit
+    until true
 
     --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 end
