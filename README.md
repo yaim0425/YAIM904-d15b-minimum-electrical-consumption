@@ -1,5 +1,7 @@
 # YAIM904 d15b – Minimum Electrical Consumption 🔌
 
+---
+
 ## 📦 Description
 
 **YAIM904 d15b – Minimum Electrical Consumption** reduces the **overall electrical energy consumption of all entities**.
@@ -45,7 +47,7 @@ The MOD works transparently once enabled.
 
 ## ❤️ Support
 
-Suggestions, ideas, and balance feedback are welcome on the GitHub repository.
+Suggestions, ideas and balance feedback are welcome on the GitHub repository.
 
 ---
 
