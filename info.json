@@ -1,12 +1,12 @@
-{
-  "name": "YAIM904-d15b-minimum-electrical-consumption",
-  "version": "0.0.2",
-  "title": "YAIM904 d15b Minimum electrical consumption",
-  "author": "YAIM904",
-  "factorio_version": "2.0",
-  "description": "Reduces energy consumption of all entities. [[I accept suggestions]]",
-  "homepage": "https://github.com/yaim0425/YAIM904-d15b-minimum-electrical-consumption",
-  "dependencies": [
-    "YAIM904-d00b-core"
-  ]
+﻿{
+    "name":  "YAIM904-d15b-minimum-electrical-consumption",
+    "version":  "0.0.2",
+    "title":  "YAIM904 d15b Minimum electrical consumption",
+    "author":  "YAIM904",
+    "factorio_version":  "2.1",
+    "description":  "Reduces energy consumption of all entities. [[I accept suggestions]]",
+    "homepage":  "https://github.com/yaim0425/YAIM904-d15b-minimum-electrical-consumption",
+    "dependencies":  [
+        "YAIM904-d00b-core"
+    ]
 }
